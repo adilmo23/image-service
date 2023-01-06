@@ -34,7 +34,7 @@ public class ImageRestController {
 
 
     @GetMapping("/view/{imageHash}")
-    public ResponseEntity view(@RequestParam(name = "{imageHash}") Image imageHash) {
+    public ResponseEntity view(@PathVariable(name = "{imageHash}") Image imageHash) {
         if (StringUtils.isBlank(accessToken)) {
             throw new NoAuthAccessTokenException("Access token not found, need admin auth");
         }
@@ -48,7 +48,7 @@ public class ImageRestController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity upload(@RequestParam(name = "image") MultipartFile image) throws IOException {
+    public ResponseEntity upload(@PathVariable(name = "image") MultipartFile image) throws IOException {
         if (StringUtils.isBlank(accessToken)) {
             throw new NoAuthAccessTokenException("Access token not found, need admin auth");
         }
@@ -67,7 +67,7 @@ public class ImageRestController {
     }
 
     @DeleteMapping("/{delete}")
-    public ResponseEntity delete(@RequestParam("deletehash") Image image) {
+    public ResponseEntity delete(@PathVariable("deletehash") Image image) {
         if (StringUtils.isBlank(accessToken)) {
             throw new NoAuthAccessTokenException("Access token not found, need admin auth");
         }
